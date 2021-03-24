@@ -6,7 +6,7 @@
                             <div class="sb-sidenav-menu-heading">Core</div>
                             <a class="nav-link" href="{{@route('companies.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Компании
+                                
                             </a>
                             <a class="nav-link" href="{{@route('employees.index')}}">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>

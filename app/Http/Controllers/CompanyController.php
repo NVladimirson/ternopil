@@ -5,6 +5,7 @@ use DataTables;
 use App\Models\CompanyModel;
 use App\Models\EmployeeModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -14,7 +15,7 @@ class CompanyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    { 
         return view('company.index');
     }
     // { "data": "title" },
@@ -66,6 +67,7 @@ class CompanyController extends Controller
      */
     public function create(Request $request)
     {
+
       return view('company.create');
     }
 
@@ -96,9 +98,15 @@ class CompanyController extends Controller
         'updated_at' => now()
     ]);
 
+      $details = [
+        'title' => 'Test Mail',
+        'body' => 'Company has been creaeted'
+      ];
+  
+     \Mail::to(auth()->user()->email)->send(new \App\Mail\MyTestMail($details));
 
     return redirect()->route('companies.index')
-        ->with('success', 'Новая компания добавлена в БД.');
+        ->with('success', 'Новая компания добавлена в БД. Сообщение послано по адресу: '.auth()->user()->email);
     }
 
     /**
@@ -146,7 +154,7 @@ class CompanyController extends Controller
       $request->logo->move(public_path('assets/logos'), $imageName);
 
       $company = CompanyModel::find($id);
-      
+
       $company->update([
         'title' => $request->title,
         'email' => $request->email,
