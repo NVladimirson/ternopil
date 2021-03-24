@@ -1,0 +1,25 @@
+<div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                    <div class="sb-sidenav-menu">
+                        <div class="nav">
+                            <div class="sb-sidenav-menu-heading">Core</div>
+                            <a class="nav-link" href="{{@route('companies.index')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                Компании
+                            </a>
+                            <a class="nav-link" href="{{@route('employees.index')}}">
+                                <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                                Сотрудники
+                            </a>
+
+                        </div>
+                    </div>
+                    <div class="sb-sidenav-footer">
+                        <div class="small">Залогинено как:</div>
+                        {{auth()->user()->name}}
+                    </div>
+                </nav>
+            </div>
+            @yield('content')
+        </div>
